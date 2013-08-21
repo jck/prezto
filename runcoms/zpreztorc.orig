@@ -45,7 +45,11 @@ zstyle ':prezto:load' pmodule \
 #
 
 # Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':prezto:module:editor' key-bindings 'vi'
+<<<<<<< HEAD
+zstyle ':prezto:module:editor' keymap 'vi'
+=======
+zstyle ':prezto:module:editor' key-bindings 'emacs'
+>>>>>>> upstream/master
 
 # Auto convert .... to ../..
 zstyle ':prezto:module:editor' dot-expansion 'yes'
@@ -107,21 +111,38 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 # SSH
 #
 
+<<<<<<< HEAD
+# Enable ssh-agent forwarding.
+zstyle ':prezto:module:ssh-agent' forwarding 'yes'
+
+# Set ssh-agent identities to load.
+zstyle ':prezto:module:ssh-agent' identities 'id_rsa' 'id_github' 'id_bitbucket'
+=======
 # Set the SSH identities to load into the agent.
 # zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
+>>>>>>> upstream/master
 
 #
 # Syntax Highlighting
 #
 
 # Set syntax highlighters.
-# By default, only the main highlighter is enabled.
+<<<<<<< HEAD
+# By default main, brackets, and cursor are enabled.
 zstyle ':prezto:module:syntax-highlighting' highlighters \
   'main' \
   'brackets' \
   'pattern' \
   'cursor' \
   'root'
+=======
+# By default, only the main highlighter is enabled.
+# zstyle ':prezto:module:syntax-highlighting' highlighters \
+#   'main' \
+#   'brackets' \
+#   'pattern' \
+#   'cursor' \
+#   'root'
 #
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \
@@ -129,6 +150,7 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 #   'command' 'bg=blue' \
 #   'function' 'bg=blue'
 #
+>>>>>>> upstream/master
 
 #
 # Terminal
