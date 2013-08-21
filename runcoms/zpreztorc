@@ -32,17 +32,23 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
+  'git' \
+  'python' \
+  'ssh-agent' \
+  'syntax-highlighting' \
+  'history-substring-search' \
   'prompt'
+
 
 #
 # Editor
 #
 
 # Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':prezto:module:editor' keymap 'emacs'
+zstyle ':prezto:module:editor' keymap 'vi'
 
 # Auto convert .... to ../..
-# zstyle ':prezto:module:editor' dot-expansion 'yes'
+zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 #
 # Git
@@ -93,10 +99,10 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 #
 
 # Enable ssh-agent forwarding.
-# zstyle ':prezto:module:ssh-agent' forwarding 'yes'
+zstyle ':prezto:module:ssh-agent' forwarding 'yes'
 
 # Set ssh-agent identities to load.
-# zstyle ':prezto:module:ssh-agent' identities 'id_rsa' 'id_rsa2' 'id_github'
+zstyle ':prezto:module:ssh-agent' identities 'id_rsa' 'id_github' 'id_bitbucket'
 
 #
 # Syntax Highlighting
@@ -104,19 +110,21 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 
 # Set syntax highlighters.
 # By default main, brackets, and cursor are enabled.
-# zstyle ':prezto:module:syntax-highlighting' highlighters \
-#   'main' \
-#   'brackets' \
-#   'pattern' \
-#   'cursor' \
-#   'root'
+zstyle ':prezto:module:syntax-highlighting' highlighters \
+  'main' \
+  'brackets' \
+  'pattern' \
+  'cursor' \
+  'root'
 
 #
 # Terminal
 #
 
 # Auto set the tab and window titles.
-zstyle ':prezto:module:terminal' auto-title 'yes'
+if [[ -z $TMUX ]]; then
+  zstyle ':prezto:module:terminal' auto-title 'yes'
+fi
 
 #
 # Tmux
@@ -125,3 +133,5 @@ zstyle ':prezto:module:terminal' auto-title 'yes'
 # Auto start a session when Zsh is launched.
 # zstyle ':prezto:module:tmux' auto-start 'yes'
 
+
+REPORTTIME=10

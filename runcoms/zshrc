@@ -12,3 +12,19 @@ fi
 
 # Customize to your needs...
 
+# Rehash everytime, to take care of newly installed applications
+zstyle ':completion:*' rehash true
+
+# Add my scripts to the path
+path+=~/bin
+
+# My aliases
+for file in ~/.zalias/*; do
+  source $file
+done
+
+# Auto ls
+#function chpwd() {
+    #emulate -L zsh
+    #ls
+#}
