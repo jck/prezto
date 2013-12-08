@@ -47,6 +47,45 @@ if (( $+commands[$venv_script.sh] )); then
   source "$commands[$venv_script.sh]"
 fi
 
+function _venvwrap {
+    add-zsh-hook -d chpwd autoenv
+    "$@"
+    add-zsh-hook chpwd autoenv
+}
+
+function autoenv {
+    if (( ($+VIRTUAL_ENV)  && !($+AUTOENV) )); then
+        return
+    fi
+
+    local root=.
+    local name=""
+    if is-true "$(git rev-parse --is-inside-work-tree 2> /dev/null)"; then
+        root="$(git rev-parse --show-toplevel 2> /dev/null)"
+        name=$root:t
+    fi
+
+    if [ -f "$root/.venv" ]; then
+        name=$(<$root/.venv)
+    fi
+
+    local venv_name="$VIRTUAL_ENV:t"
+    if [[ $name != $venv_name ]]; then
+        if [[ -z $name ]]; then
+            _venvwrap deactivate && unset AUTOENV
+            return
+        fi
+
+        if [[ -d "$WORKON_HOME/$name" ]]; then
+            _venvwrap workon $name && export AUTOENV=1
+            return
+        fi
+    fi
+}
+
+if zstyle -T ':prezto:module:python' autoenv; then
+    add-zsh-hook chpwd autoenv
+fi
 #
 # Aliases
 #
