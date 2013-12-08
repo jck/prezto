@@ -10,6 +10,10 @@
 #
 
 export BROWSER='firefox'
+=======
+if [[ "$OSTYPE" == darwin* ]]; then
+  export BROWSER='open'
+fi
 
 #
 # Editors
@@ -31,6 +35,7 @@ fi
 # Paths
 #
 
+# Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
 
 # Set the the list of directories that cd searches.
@@ -38,15 +43,10 @@ typeset -gU cdpath fpath mailpath path
 #   $cdpath
 # )
 
-# Set the list of directories that Zsh searches for programs.
-path=(
-  /usr/local/{bin,sbin}
-  $path
-)
-
 # Python (virtualenv)
 export PROJECT_HOME="$HOME/projects"
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+
 #
 # Less
 #
