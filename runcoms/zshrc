@@ -10,6 +10,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+export TERM='xterm-256color'
+
 # Customize to your needs...
 stty -ixon
 
@@ -23,42 +25,3 @@ path=(~/bin $path)
 for file in ~/.zalias/*; do
   source $file
 done
-
-function _venvwraphack {
-    export AUTOENV_SENTINEL=1
-    "$@"
-    unset AUTOENV_SENTINEL
-}
-
-function autoenv {
-    if (($+AUTOENV_SENTINEL)); then
-        return
-    fi
-
-    if (( ($+VIRTUAL_ENV)  && !($+AUTOENV) )); then
-        return
-    fi
-
-    if ! is-true "$(git rev-parse --is-inside-work-tree 2> /dev/null)"; then
-        if (($+VIRTUAL_ENV)); then
-            _venvwraphack deactivate && unset AUTOENV
-        fi
-        return
-    fi
-
-    local root="$(git rev-parse --show-toplevel 2> /dev/null)"
-    if [ -f "$root/.venv" ]; then
-        local name=$(<$root/.venv)
-    else
-        local name=$root:t
-    fi
-
-    if [[ -d "$WORKON_HOME/$name" ]] && [[ "$VIRTUAL_ENV:t" != $name ]]; then
-        _venvwraphack workon $name
-        export AUTOENV=1
-    fi
-}
-
-typeset -U chpwd_functions
-chpwd_functions+=(autoenv)
-
