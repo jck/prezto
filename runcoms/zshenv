@@ -47,7 +47,6 @@ path=(
 # Python (virtualenv)
 export PROJECT_HOME="$HOME/projects"
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-
 #
 # Less
 #

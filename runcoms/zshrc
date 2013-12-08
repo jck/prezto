@@ -11,6 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+stty -ixon
 
 # Rehash everytime, to take care of newly installed applications
 zstyle ':completion:*' rehash true
@@ -23,8 +24,42 @@ for file in ~/.zalias/*; do
   source $file
 done
 
-# Auto ls
-#function chpwd() {
-    #emulate -L zsh
-    #ls
-#}
+
+function autoenv_enable {
+}
+
+function autoenv_disable {
+    chpwd_functions=(${chpwd_functions#autoenv})
+}
+
+function autoenv {
+    if (( ($+VIRTUAL_ENV)  && !($+AUTOENV) )); then
+        return
+    fi
+
+    if ! is-true "$(git rev-parse --is-inside-work-tree 2> /dev/null)"; then
+        if (($+VIRTUAL_ENV)); then
+            chpwd_functions=(${chpwd_functions#autoenv})
+            deactivate && unset AUTOENV
+            chpwd_functions+=(autoenv)
+        fi
+        return
+    fi
+
+    local root="$(git rev-parse --show-toplevel 2> /dev/null)"
+    if [ -f "$root/.venv" ]; then
+        local name=$(<$root/.venv)
+    else
+        local name=$root:t
+    fi
+
+    if [[ -d "$WORKON_HOME/$name" ]] && [[ "$VIRTUAL_ENV:t" != $name ]]; then
+        chpwd_functions=(${chpwd_functions#autoenv})
+        workon $name
+        chpwd_functions+=(autoenv)
+        export AUTOENV=1
+    fi
+}
+
+typeset -U chpwd_functions
+chpwd_functions+=(autoenv)
