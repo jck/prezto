@@ -31,15 +31,20 @@ if (( ! $+commands[python] && ! $+commands[pyenv] )); then
   return 1
 fi
 
+local venv_script=virtualenvwrapper
+if zstyle -T ':prezto:module:python' lazy_venv; then
+    venv_script+=_lazy
+fi
+
 # Load virtualenvwrapper into the shell session.
-if (( $+commands[virtualenvwrapper_lazy.sh] )); then
+if (( $+commands[$venv_script.sh] )); then
   # Set the directory where virtual environments are stored.
   export WORKON_HOME="$HOME/.virtualenvs"
 
   # Disable the virtualenv prompt.
   VIRTUAL_ENV_DISABLE_PROMPT=1
 
-  source "$commands[virtualenvwrapper_lazy.sh]"
+  source "$commands[$venv_script.sh]"
 fi
 
 #
