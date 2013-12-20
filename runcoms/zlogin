@@ -16,7 +16,14 @@
 
 # Print a random, hopefully interesting, adage.
 if (( $+commands[fortune] )); then
-  fortune -a
+    if (( $+TMUX )); then
+        fortune -as
+    else
+        fortune -a
+    fi
   print
 fi
 
+if (( $+TMUX  )); then
+    autoenv
+fi
