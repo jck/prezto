@@ -24,4 +24,4 @@ path=(~/bin $path)
 # My aliases
 for file in ~/.zalias/*; do
   source $file
-done
+done; unset file
