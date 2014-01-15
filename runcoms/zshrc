@@ -28,3 +28,4 @@ done; unset file
 export LESS_TERMCAP_md=$'\E[0;33m' # begin bold
 export LESS_TERMCAP_so=$'\E[1;30;43m' # begin standout-mode - info box
 export LESS_TERMCAP_us=$'\E[4;32m' # begin underline
+#dummy
