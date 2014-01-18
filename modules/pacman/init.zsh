@@ -39,46 +39,32 @@ fi
 alias pac="${_pacman_frontend}"
 
 # Installs packages from repositories.
-alias paci="${_pacman_sudo}${_pacman_frontend} --sync"
+alias paci="${_pacman_sudo}${_pacman_frontend} -S"
 
 # Installs packages from files.
-alias pacI="${_pacman_sudo}${_pacman_frontend} --upgrade"
+alias pacI="${_pacman_sudo}${_pacman_frontend} -U"
 
 # Removes packages and unneeded dependencies.
-alias pacx="${_pacman_sudo}${_pacman_frontend} --remove"
+alias pacx="${_pacman_sudo}${_pacman_frontend} -Rs"
 
 # Removes packages, their configuration, and unneeded dependencies.
-alias pacX="${_pacman_sudo}${_pacman_frontend} --remove --nosave --recursive"
+alias pacX="${_pacman_sudo}${_pacman_frontend} -Rns"
 
-# Displays information about a package from the repositories.
-alias pacq="${_pacman_frontend} --sync --info"
+# Displays information about an installed package.
+alias pacq="${_pacman_frontend} -Qi"
 
-# Displays information about a package from the local database.
-alias pacQ="${_pacman_frontend} --query --info"
+# Displays file list of an installed package.
+alias pacl="${_pacman_frontend} -Ql"
 
-# Searches for packages in the repositories.
-alias pacs="${_pacman_frontend} --sync --search"
+#Find out which package owns a file.
+alias paco="${_pacman_frontend} -Qo"
 
-# Searches for packages in the local database.
-alias pacS="${_pacman_frontend} --query --search"
+# Upgrade repo packages
+alias pacu="${_pacman_frontend} -Syu"
 
-# Lists orphan packages.
-alias pacman-list-orphans="${_pacman_sudo}${_pacman_frontend} --query --deps --unrequired"
+# Upgrade repo + aur packages
+alias pacS="${_pacman_frontend} -Syua"
 
-# Removes orphan packages.
-alias pacman-remove-orphans="${_pacman_sudo}${_pacman_frontend} --remove --recursive \$(${_pacman_frontend} --quiet --query --deps --unrequired)"
-
-# Synchronizes the local package and Arch Build System databases against the
-# repositories.
-if (( $+commands[abs] )); then
-  alias pacu="${_pacman_sudo}${_pacman_frontend} --sync --refresh && ${_pacman_sudo}abs"
-else
-  alias pacu="${_pacman_sudo}${_pacman_frontend} --sync --refresh"
-fi
-
-# Synchronizes the local package database against the repositories then
-# upgrades outdated packages.
-alias pacU="${_pacman_sudo}${_pacman_frontend} --sync --refresh --sysupgrade"
 
 unset _pacman_{frontend,sudo}
 

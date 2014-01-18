@@ -38,7 +38,8 @@ zstyle ':prezto:load' pmodule \
   'syntax-highlighting' \
   'history-substring-search' \
   'prompt' \
-  'fasd'
+  'fasd' \
+  'pacman'
 
 
 #
@@ -156,3 +157,6 @@ fi
 
 # Auto start a session when Zsh is launched in a SSH connection.
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
+
+# Pacman
+zstyle ':prezto:module:pacman' frontend 'yaourt'
