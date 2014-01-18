@@ -77,11 +77,11 @@ function prompt_jck_setup {
 
   # Virtualenv
   zstyle ':prezto:module:python:info:virtualenv' format \
-    '%F{magenta}%Bv%b%f:%F{magenta}%v%f'
+    ' %F{magenta}%Bv%b%f:%F{magenta}%v%f'
 
   # Define prompts.
   PROMPT='%F{cyan}${_prompt_jck_pwd}%f${git_info:+${(e)git_info[prompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${git_info[rprompt]} ${python_info[virtualenv]}'
+  RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${git_info[rprompt]}${python_info[virtualenv]}'
   RPROMPT+=' %F{red}${SSH_TTY:+%m}%f'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
