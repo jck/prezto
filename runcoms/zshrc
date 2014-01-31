@@ -19,8 +19,8 @@ zstyle ':completion:*' rehash true
 # Add my scripts to the path
 path=(~/bin $path)
 
-# My aliases
-for file in ~/.zalias/*; do
+# My modules
+for file in ~/.zmodules/*; do
   source $file
 done; unset file
 
