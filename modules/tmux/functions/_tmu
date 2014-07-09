@@ -1,0 +1,19 @@
+#compdef tmu
+
+#
+# Completes tmu.
+#
+# Authors:
+# Keerthan Jaic <jckeerthan@gmail.com>
+#
+
+
+function __sessions() {
+  local -a sessions
+  sessions=( ${${(f)"$(command tmux 2> /dev/null list-sessions)"}/:[ $'\t']##/:} )
+  _describe -t sessions 'existing sessions' sessions 
+}
+
+_arguments \
+  '-d[detach existing clients or do not attach new session]' \
+  '1:::__sessions'

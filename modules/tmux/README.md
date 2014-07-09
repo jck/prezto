@@ -36,6 +36,10 @@ Aliases
   - `tmuxa` attaches or switches to a tmux session.
   - `tmuxl` lists sessions managed by the tmux server.
 
+Functions
+---------
+ - `tmu` attaches or creates a tmux session.
+
 Caveats
 -------
 
