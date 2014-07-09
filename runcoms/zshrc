@@ -13,6 +13,13 @@ fi
 # Customize to your needs...
 stty -ixon
 
+# Report time statistics for progs that take more than 10 secs to run
+REPORTTIME=10
+
+# Report any login/logout of other users
+WATCH=notme
+WATCHFMT='%n %a %l from %m at %T.'
+
 # Rehash everytime, to take care of newly installed applications
 zstyle ':completion:*' rehash true
 
