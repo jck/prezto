@@ -31,6 +31,9 @@ alias debI='sudo dpkg -i'
 # Displays package information.
 alias debq='apt-cache show'
 
+# Displays list of files in package
+alias debl='dpkg -L'
+
 # Updates the package lists.
 alias debu='sudo apt-get update'
 
