@@ -43,6 +43,7 @@ zstyle ':prezto:load' pmodule \
   'fasd' \
   'pacman' \
   'dpkg' \
+  'yum' \
   'systemd'
 
 
