@@ -169,3 +169,6 @@ zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 
 # Pacman
 zstyle ':prezto:module:pacman' frontend 'yaourt'
+
+# Integrate with iTerm2.
+# zstyle ':prezto:module:tmux:iterm' integrate 'yes'

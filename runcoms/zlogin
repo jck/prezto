@@ -16,12 +16,14 @@
 
 # Print a random, hopefully interesting, adage.
 if (( $+commands[fortune] )); then
+  if [[ -t 0 || -t 1 ]]; then
     if (( $+TMUX )); then
         fortune -as
     else
         fortune -a
     fi
-  print
+    print
+  fi
 fi
 
 if (( $+TMUX  )); then
