@@ -95,7 +95,6 @@ zstyle ':prezto:module:editor' dot-expansion 'yes'
 # Prompt
 #
 
-zstyle ':prezto:module:python' lazy_venv 'no'
 zstyle ':prezto:module:python' autoenv 'yes'
 
 # Set the prompt theme to load.
