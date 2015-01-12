@@ -12,6 +12,7 @@ fi
 
 # Customize to your needs...
 stty -ixon
+ttyctl -f
 
 # Report time statistics for progs that take more than 10 secs to run
 REPORTTIME=10
