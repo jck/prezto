@@ -45,50 +45,6 @@ if (( $+commands[virtualenvwrapper.sh] )); then
   source "$commands[virtualenvwrapper.sh]"
 fi
 
-function autoenv {
-  #Don't run in shell scripts etc.
-  if [[ $ZSH_SUBSHELL -ne 0 ]]; then
-    return
-  fi
-
-  #Don't run if currently in virtual env not set by autoenv
-  if (( ($+VIRTUAL_ENV)  && !($+AUTOENV) )); then
-    return
-  fi
-
-  local name=""
-  if [[ -f .venv ]]; then
-    #.venv file in current dir gets highest priority
-    name=$(<.venv)
-  elif is-true "$(git rev-parse --is-inside-work-tree 2> /dev/null)"; then
-    local gitroot="$(git rev-parse --show-toplevel 2> /dev/null)"
-    if [ -f "$gitroot/.venv" ]; then
-      #If there is a .venv file in gitroot
-      name=$(<$gitroot/.venv)
-    else
-      #Else use the name of the folder as venv name
-      name=$gitroot:t
-    fi
-  fi
-
-
-  local venv_name="$VIRTUAL_ENV:t"
-  if [[ $name != $venv_name ]]; then
-    if [[ -z $name ]]; then
-      deactivate && unset AUTOENV
-      return
-    fi
-
-    if [[ -d "$WORKON_HOME/$name" ]]; then
-      workon $name && export AUTOENV=1
-      return
-    fi
-  fi
-}
-
-if zstyle -T ':prezto:module:python' autoenv; then
-    add-zsh-hook chpwd autoenv
-fi
 #
 # Aliases
 #

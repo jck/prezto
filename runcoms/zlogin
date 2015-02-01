@@ -25,7 +25,3 @@ if (( $+commands[fortune] )); then
     print
   fi
 fi
-
-if (( $+TMUX  )); then
-    autoenv
-fi
