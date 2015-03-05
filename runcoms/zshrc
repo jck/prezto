@@ -24,8 +24,6 @@ WATCHFMT='%n %a %l from %m at %T.'
 # Rehash everytime, to take care of newly installed applications
 zstyle ':completion:*' rehash true
 
-# Add my scripts to the path
-path=(~/bin $path)
 
 # My modules
 for file in ~/.zmodules/*; do

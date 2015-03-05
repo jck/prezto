@@ -33,6 +33,7 @@ fi
 #
 # Paths
 #
+export PATH=~/bin:$PATH
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
@@ -42,14 +43,10 @@ typeset -gU cdpath fpath mailpath path
 #   $cdpath
 # )
 
-# Python (virtualenv)
-export PROJECT_HOME="$HOME/projects"
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 
 #
 # Less
 #
-
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
