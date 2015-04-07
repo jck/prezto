@@ -50,3 +50,9 @@ fi
 #
 
 alias py='python'
+alias py2='python2'
+alias wo='pew workon'
+alias mkvenv='pew new'
+alias mkvenv2='pew new -p python2'
+alias mktmpvenv='pew mktmpenv'
+alias mktmpvenv2='pew mktmpenv -p python2'
